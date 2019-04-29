@@ -17,7 +17,7 @@
 	var/datum/gas_mixture/air_contents = null
 	var/distribute_pressure = ONE_ATMOSPHERE
 	var/integrity = 3
-	var/volume = 70
+	var/volume = TANK_DEFAULT_VOLUME
 
 /obj/item/tank/ui_action_click(mob/user)
 	toggle_internals(user)
@@ -248,7 +248,7 @@
 		air_contents.react(src)
 		air_contents.react(src)
 		pressure = air_contents.return_pressure()
-		var/range = (pressure-TANK_FRAGMENT_PRESSURE)/TANK_FRAGMENT_SCALE
+		var/range = (pressure-TANK_FRAGMENT_PRESSURE)/TANK_FRAGMENT_SCALE * (air_contents.return_volume()/(2*TANK_DEFAULT_VOLUME))
 		var/turf/epicenter = get_turf(loc)
 
 
